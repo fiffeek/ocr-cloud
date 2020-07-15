@@ -1,0 +1,21 @@
+steps:
+
+- id: python-unit-tests
+  name: 'python:3.7'
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - |
+      pip3 install -r requirements.txt \
+      && pip3 install -r requirements-test.txt \
+      && python3 -m pytest main-test.py
+
+- id: 'deploy'
+  name: gcr.io/cloud-builders/gcloud
+  args: [
+      'functions',
+      'deploy','${_FUNCTION_NAME}',
+      '--region=${_REGION}',
+      '--trigger-topic=${_TOPIC_NAME}',
+      '--source=${_SOURCE_CODE}'
+  ]

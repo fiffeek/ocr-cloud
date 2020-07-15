@@ -1,0 +1,15 @@
+steps:
+
+- id: python-unit-tests
+  name: 'python:3.7'
+  entrypoint: /bin/sh
+  args:
+    - -c
+    - |
+      pip3 install -r requirements.txt \
+      && pip3 install -r test/requirements-test.txt \
+      && python3 -m pytest test/*
+
+- id: 'deploy'
+  name: "gcr.io/cloud-builders/gcloud"
+  args: ["app", "deploy"]
