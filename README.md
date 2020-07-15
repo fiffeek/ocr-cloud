@@ -4,7 +4,7 @@ A cloud application on GCP. Application runs [here](http://lambda-functions-gcp.
 
 ### More about the implementation
 
-![gcp](https://drive.google.com/uc?id=1XZ_GRvyqblzH824AoYvpq_2IvsN27tZM&export=download)
+![gcp](https://drive.google.com/file/d/1XZ_GRvyqblzH824AoYvpq_2IvsN27tZM/preview)
 
 I have gone with the most obvious approach that would allow me to have HA and would scale automatically. For user authentication I used IAP. The main application is called `a frontend` even though technically it is not (it is a Flask server) but in this case it is the most visible component of the system (to the user). After the user authenticates with IAP they can logout using another IAP functionality that clears the JWT and cookies. Every component in this diagram scales automatically so we do not have an issue with scalability at all.
 
